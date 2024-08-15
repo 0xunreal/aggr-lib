@@ -1,0 +1,20 @@
+{
+  "type": "indicator",
+  "name": "indicator:SplitVolumeDelta",
+  "data": {
+    "createdAt": 1709491422350,
+    "script": "delta = vbuy - vsell\nhistogram(delta > 0 ? delta : 0, color=options.bullishColor)\nhistogram(delta < 0 ? delta : 0, color=options.bearishColor)\nline(sma(delta, options.length), color=options.avgLineColor)",
+    "options": {
+      "priceScaleId": "volume-delta",
+      "scaleMargins": {
+        "top": 0.8,
+        "bottom": 0
+      },
+      "length": 14,
+      "bearishColor": "rgb(239,83,80)",
+      "bullishColor": "rgb(66,165,245)",
+      "avgLineColor": "rgb(255,255,255)"
+    },
+    "description": "A Volume Delta indicator that shows the difference between buying and selling volume using separate histograms for positive and negative values. A line shows the simple moving average of the delta."
+  }
+}
