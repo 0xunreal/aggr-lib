@@ -1,0 +1,20 @@
+{
+  "type": "indicator",
+  "name": "indicator:Ichimoku",
+  "data": {
+    "createdAt": 1623024000001,
+    "script": "conversionLine=(lowest($price.low, options.conversionLineLength) + highest($price.high, options.conversionLineLength)) / 2\nbaseLine=(lowest($price.low, options.baseLineLength) + highest($price.high, options.baseLineLength)) / 2\nleadLineOne=(conversionLine + baseLine) / 2\nleadLineTwo=(lowest($price.low, options.laggingSpanTwoLength) + highest($price.high, options.laggingSpanTwoLength)) / 2\nplotcloudarea(leadLineTwo, leadLineOne, offset=options.displacement, positiveColor=options.cloudPositiveColor, negativeColor=options.cloudNegativeColor)\nline(conversionLine, color=options.conversionLineColor)\nline(baseLine, color=options.baseLineColor)\nplotline({ time: time - options.displacement * bar.timeframe, value: $price.close }, color=options.laggingSpanColor)",
+    "options": {
+      "baseLineLength": 26,
+      "conversionLineLength": 9,
+      "displacement": 26,
+      "laggingSpanTwoLength": 52,
+      "priceScaleId": "right",
+      "conversionLineColor": "rgb(255, 0, 0)",
+      "baseLineColor": "rgb(0, 0, 255)",
+      "laggingSpanColor": "rgb(0, 255, 0)",
+      "cloudPositiveColor": "rgba(0, 255, 0, 0.1)",
+      "cloudNegativeColor": "rgba(255, 0, 0, 0.1)"
+    }
+  }
+}
